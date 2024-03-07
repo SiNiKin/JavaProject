@@ -16,7 +16,13 @@ public class A03_variable {
 		// - 키워드는 식별자로 사용하면 안됩니다.
 		// - 키워드는 시스템 또는 자바에서 기본적으로 사용하고 있는 명령어나 변수들을 의미함...
 		/*
-		 * 
+		 *  키워드(keywords) : 주로 명령문들... 
+			 abstract, continue, for, new, switch, assert, default, goto, package, 
+			 synchronized, boolean, do, if, private, this, break, double, implements,
+			 protected, throw, byte, else, import, public, throws, case, enum, 
+			 instanceof, return, transient, catch, extends, int, short, try, char, 
+			 final, interface, static, void, class, finally, long, strictfp, volatile,
+			 const, float, native, super, while
 		 */
 		
 		// 이름 규칙
