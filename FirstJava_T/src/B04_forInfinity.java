@@ -48,6 +48,7 @@ public class B04_forInfinity {
 		System.out.println("정답!!!");
 		
 		scan.close();
+//		테스트
 		
 	}
 
