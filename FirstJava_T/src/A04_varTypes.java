@@ -18,6 +18,9 @@ public class A04_varTypes {
 		 * 		signed : -2^31 ~ +2^31-1 , unsigned : 0 ~ 4,294,967,295(2^32-1)
 		 * 	  - 8byte ( long ) 
 		 * 		signed : -2^63 ~ +2^63-1
+		 * 
+		 * 
+		 * 	  - 0o : 8진수 / 0x : 16진수
 		 */
 		
 		byte _byte = -128;		// 1111 1111
