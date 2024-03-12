@@ -46,7 +46,7 @@ public class B09_ArrayExample1 {
 		System.out.printf("%s", String.valueOf(s));
 		
 		
-		// *** Enchanced For문 (강화된 for문)
+		// *** Enchanced For문 (강화된 for문) 
 		/*
 		 * 	(형식)
 		 * 	 for (타입 변수명 : 배열명)	{	** 배열명으로 불러오는 배별의 타입은 : 이전의 타입과 같아야 함.
