@@ -70,33 +70,33 @@ public class ForStarDiamond {
  		//   프로그램을 작성해 보세요. (단, 줄은 홀수로만 입력 받아야 합니다.)
 		
 //		Scanner scan = new Scanner(System.in);
-		System.out.print("몇 줄 그릴까요? ");
-		int row = scan.nextInt();
+//		System.out.print("몇 줄 그릴까요? ");
+//		int row = scan.nextInt();
 		// T
 		
 		// 변수 선언 : sp(여백), st(별), 반전을 위한 flag(boolean)- true(삼각형), false(역삼각형)
-		int sp = row/2;
-		int st = 1;
-		boolean flag = true;
-		
-		for (int i = 0; i < row; i++) {
-			// 여백처리...
-			for (int j = 0; j < sp; j++) {
-				System.out.print(" ");
-			}
-			// 별 찍기...
-			for (int j = 0; j < st; j++) {
-				System.out.print("*");
-			}
-			System.out.println();
-			
-			if (i == (row/2)) flag = false;	// 반전
-			if(flag) {
-				sp -= 1; st += 2;
-			}else {
-				sp += 1; st -=2;
-			}
-		}
+//		int sp = row/2;
+//		int st = 1;
+//		boolean flag = true;
+//		
+//		for (int i = 0; i < row; i++) {
+//			// 여백처리...
+//			for (int j = 0; j < sp; j++) {
+//				System.out.print(" ");
+//			}
+//			// 별 찍기...
+//			for (int j = 0; j < st; j++) {
+//				System.out.print("*");
+//			}
+//			System.out.println();
+//			
+//			if (i == (row/2)) flag = false;	// 반전
+//			if(flag) {
+//				sp -= 1; st += 2;
+//			}else {
+//				sp += 1; st -=2;
+//			}
+//		}
 		
 		
 		
@@ -153,6 +153,84 @@ public class ForStarDiamond {
 //			System.out.println("=========짠!!=========");
 //		}else {
 //			System.out.println("잘못된 접근입니다. 홀수만 입력해주세요.");
+//		}
+		
+		
+//		3. 다이아몬드 달러
+		
+		System.out.print("몇 줄 그릴까요? ");
+		int r = scan.nextInt();
+		
+		int sp = r/2;
+		int st = 1;
+		boolean flag = true;
+		
+		for (int i = 0; i < r; i++) {
+		// 여백처리...
+			for (int j = 0; j < sp; j++) {
+				System.out.print(" ");
+			}
+			// 별 찍기...
+			for (int j = 0; j < st; j++) {
+				if (j == 0 || j == st -1) {
+					System.out.print("*");
+				}else {
+					if (j%2==0) {
+						System.out.print("$");
+					}
+						else {
+							System.out.print(" ");
+						}
+					}
+				}
+			System.out.println();
+		
+			if (i == (r/2)) flag = false;	// 반전
+			if(flag) {
+				sp -= 1; st += 2;
+			}else {
+				sp += 1; st -=2;
+			}
+		}
+		
+
+		
+//		for (int i = 1; i <= r; i++) {
+//			for (int j = r; j > i; j--) {
+//				System.out.print(" ");
+//			}
+//			
+//			if (i == r) {
+//				for (int j = 0; j < 2 * i - 1; j++) {
+//					System.out.print("*");
+//				}
+//			}else {
+//				for (int j = 0; j < 2 * i - 1; j++) {
+//					if (j == 0 || j == 2 * i - 1 - 1) {
+//						System.out.print("*");
+//					} else {
+//						System.out.print(" ");
+//					}
+//				}
+//			}
+//			
+//			if (i == (r/2)) flag = false;
+//			if (flag == false) {
+//				if (i == r) {
+//					for (int j = 0; j < 2 * i - 1; j++) {
+//						System.out.print("*");
+//					}
+//				}else {
+//					for (int j = 0; j < 2 * i - 1; j++) {
+//						if (j == 0 || j == 2 * i - 1 - 1) {
+//							System.out.print("*");
+//						} else {
+//							System.out.print(" ");
+//						}
+//					}
+//				}
+//			}
+//			System.out.println();
 //		}
 		
 		scan.close();
