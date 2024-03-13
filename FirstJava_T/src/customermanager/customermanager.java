@@ -1,34 +1,22 @@
+package customermanager;
+
 import java.util.Scanner;
 
-public class C00_CustomerManager {
+public class customermanager {
 
-	
-	// 고객 정보를 저장할 수 있는 배열 지정...
-	
-	static final int MAX = 100;		// final 한번 입력된 값은 변경 X
-	
-	// 고객 정보를 저장할 변수를 배열로 선언 : 이름, 성별, 이메일, 출생년도
-	static String[] nameList = new String[MAX];		// 이름 저장
-	static String[] genderList = new String[MAX];	// 성별 저장
-	static String[] emailList = new String[MAX];	// 이메일 저장
-	static int[] birthYearList = new int[MAX];		// 출생년도 저장
-	
-	// 배열을 참조하기 위해서 인덱스가 필요함...
-	static int index = -1;	// 배열의 인덱스 시작은 0부터, 때문에 최소 인덱스는 -1이 되어야 함.
-	
-	// 배열의 처음 선언한 크기보다 같거나 작은 개수의 자료를 저장
-	// 때문에 현재 데이터가 몇개 저장되어 있는지 알 수 있는 변수가 필요...
-	static int count = 0;	// 저장 개수
-	
-	// 기본 입력장치로부터 데이터를 입력 받기 위해서 Scanner 객체 생성
-	static Scanner scan = new Scanner(System.in);
-	
-	
 	public static void main(String[] args) {
-		// 고객 관리 프로그램 메뉴
+		// 이전에 만들어 놓은 고객 관리 프로그램을 OOP형식으로 변경하여 재 프로그래밍을 진행 !
+		// 1. Customer 클래스를 생성하고,
+		// 2. 관련 프로그램을 위에 생성한 Customer 클래스 기준으로 재작성하세요!
+		
+		// 이름, 성별, 이메일, 출생년도
+		// 고객 수, 고객 정보 입력, 이전 고객, 다음 고객, 현재 데이터, 삭제, 나가기
+		Customer cun = new Customer();
+		Scanner scan = new Scanner(System.in);
+		
 		while (true) {
 			// 고객 메뉴 ui(TEXT UI)
-			System.out.printf("\n[INFO] 고객 수 : %d, 인덱스 : %d\n", count, index);
+			System.out.printf("\n[INFO] 고객 수 : %d, 인덱스 : %d\n", cun.count, cun.index);
 			System.out.println("메뉴를 입력하세요.");
 			System.out.println("(I)nsert, (P)revious, (N)ext, (C)urrent, (U)pdate, (D)elete, (Q)uit");
 			System.out.println("메뉴 입력 : ");
@@ -39,39 +27,39 @@ public class C00_CustomerManager {
 			case 'ㅑ':
 			case 'i':
 				System.out.println("고객 정보 입력을 시작합니다.");
-				if (count >= MAX) {
+				if (cun.count >= cun.MAX) {
 					System.out.println("더 이상 저장할 수 없습니다.");
 				}else {
 					// 저장을 위한 메서드...
-					insertCustomerData();
+					cun.insertCustomerData();
 					System.out.println("고객 정보 입력을 시작합니다.");
 				}
 				break;
 			case 'ㅔ':
 			case 'p':	// previous
 				System.out.println("이전 데이터를 출력합니다.");
-				if(index <= 0) {	// 이전 데이터가 존재하지 않는 경우
+				if(cun.index <= 0) {	// 이전 데이터가 존재하지 않는 경우
 					System.out.println("이전 데이터가 존재하지 않습니다.");
 				}else {
-					index --;
-					printCustomerData(index);
+					cun.index --;
+					cun.printCustomerData(cun.index);
 				}
 				break;
 			case 'ㅜ':
 			case 'n':
 				System.out.println("다음 데이터를 출력합니다.");
-				if(index >= count - 1) {
+				if(cun.index >= cun.count - 1) {
 					System.out.println("다음 데이터가 존재하지 않습니다.");
 				}else {
-					index ++;
-					printCustomerData(index);
+					cun.index ++;
+					cun.printCustomerData(cun.index);
 				}
 				break;
 			case 'ㅊ':
 			case 'c':
 				System.out.println("현재 데이터를 출력합니다.");
-				if ((index >= 0) && (index < count)) {
-					printCustomerData(index);
+				if ((cun.index >= 0) && (cun.index < cun.count)) {
+					cun.printCustomerData(cun.index);
 				}else {
 					System.out.println("출력할 데이터가 선택되지 않았습니다.");
 				}
@@ -79,8 +67,8 @@ public class C00_CustomerManager {
 			case 'ㅕ':
 			case 'u':
 				System.out.println("현재 데이터를 업데이트 합니다.");
-				if ((index >= 0) && (index < count)) {
-					updateCustomerData(index);
+				if ((cun.index >= 0) && (cun.index < cun.count)) {
+					cun.updateCustomerData(cun.index);
 				}else {
 					System.out.println("업데이트 할 데이터가 선택되지 않았습니다.");
 				}
@@ -88,8 +76,8 @@ public class C00_CustomerManager {
 			case 'ㅇ':
 			case 'd':
 				System.out.println("현재 데이터를 삭제합니다.");
-				if ((index >= 0) && (index < count)) {
-					deleteCustomerData(index);
+				if ((cun.index >= 0) && (cun.index < cun.count)) {
+					cun.deleteCustomerData(cun.index);
 				}else {
 					System.out.println("삭제할 데이터가 선택되지 않았습니다.");
 				}
@@ -104,14 +92,27 @@ public class C00_CustomerManager {
 				System.out.println("메뉴를 잘 못 입력했습니다. 다시 선택해 주세요.");
 			}
 		}
-		
-		
-		
+
 	}
 
+}
 
-	public static void insertCustomerData() {
-		// 이름, 성별, 이메일, 출생년도 입력
+class Customer{
+	static final int MAX = 100;
+	
+	String[] nameList = new String[MAX];		// 이름 저장
+	String[] genderList = new String[MAX];	// 성별 저장
+	String[] emailList = new String[MAX];	// 이메일 저장
+	int[] birthYearList = new int[MAX];	
+	
+	int index = -1;
+	int count = 0;
+	
+	Scanner scan = new Scanner(System.in);
+	
+	
+	// 고객 정보 입력
+	void insertCustomerData() {
 		
 		System.out.println("이름 : ");
 		String name = scan.next();
@@ -127,23 +128,21 @@ public class C00_CustomerManager {
 		genderList[count] = gender;
 		emailList[count] = email;
 		birthYearList[count] = birthYear;
-		count++;		//	count번째 배열에 객체 저장 후에 count값 증가...
+		count++;		
 	}
 	
-	public static void printCustomerData(int index) {
+	// 고객 정보 출력
+	void printCustomerData(int index) {
 		System.out.println("=============CUSTOMER INFO================");
 		System.out.println("이름 : " + nameList[index]);
 		System.out.println("성별 : " + genderList[index]);
 		System.out.println("이메일 : " + emailList[index]);
 		System.out.println("출생년도 : " + birthYearList[index]);
 		System.out.println("==========================================");
-		
-		
-		
 	}
 	
-	
-	public static void updateCustomerData(int index) {
+	// 고객 정보 업데이트
+	void updateCustomerData(int index) {
 		System.out.println("-----------UPDATE CUSTOMER INFO--------------");
 		System.out.print("이름" + "(" + nameList[index] + ") :");
 		String name = scan.next();
@@ -156,10 +155,10 @@ public class C00_CustomerManager {
 		emailList[index] = scan.next();
 		System.out.print("출생년도(" + birthYearList[index] + ") :");
 		birthYearList[index] = scan.nextInt();
-
 	}
 	
-	public static void deleteCustomerData(int index) {
+	// 고객 정보 삭제
+	void deleteCustomerData(int index) {
 		for (int i = index; i < count - 1; i++) {
 			nameList[i] = nameList[i + 1];
 			genderList[i] = genderList[i + 1];
@@ -168,5 +167,7 @@ public class C00_CustomerManager {
 		}
 		count --;
 	}
-
+	
+	
+	
 }
