@@ -1,5 +1,7 @@
 package customermanager.oop;
 
+import obj.inheritance.Person;
+
 public class Customer {
 
 	// 멤버변수 (속성)
@@ -58,6 +60,28 @@ public class Customer {
 		return "Customer [name=" + name + ", gender=" + gender + ", email=" + email + ", birthYear=" + birthYear + "]";
 	}
 	
-	
+	// equals()를 Override하여 비교할 수 있게 만들어 보세요!!
+	@Override
+	public boolean equals(Object obj) {
+		// 동일 객체 확인
+		if (this == obj) {	
+			return true;
+		}
+		// null값 확인
+		if (obj == null) return false;
+		// 객체 생성 클래스 확인
+		if(getClass() != obj.getClass()) return false;
+		Customer other = (Customer)obj;
+		if (name == null) {
+			if(other.name != null) {
+				return false;	// 객체 내의 이름 확인
+			}
+		}else if (!name.equals(other.name)) return false;
+		if (!gender.equals(other.gender)) return false;
+		if (!email.equals(other.email)) return false;
+		if (!(birthYear == other.birthYear)) return false;
+		
+		return true;
+	}
 	
 }
