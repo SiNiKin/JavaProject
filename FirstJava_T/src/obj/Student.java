@@ -19,4 +19,6 @@ public class Student {
 		public String getNmae() {
 			return name;
 		}
+		
+		
 }

@@ -51,6 +51,10 @@ public class Student extends Person{
 		this.studentId = studentId;
 		this.major = major;
 	}
+	
+	public void study() {
+		System.out.println(name + "은(는) 공부합니다.");
+	}
 
 	
 	// Overriding이란?
