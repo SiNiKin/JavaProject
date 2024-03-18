@@ -40,7 +40,6 @@ abstract class Shape {	// 추상 클래스....
 	public String position(){
 		return "[x=" + x + " ,y=" + y + "]";
 	}
-
 	
 }
 
