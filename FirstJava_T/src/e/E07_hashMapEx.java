@@ -1,8 +1,10 @@
 package e;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class E07_hashMapEx {
 
@@ -67,6 +69,31 @@ public class E07_hashMapEx {
 		System.out.println(map2.get(1));
 		System.out.println(map2.get(2));
 		System.out.println(map2.get("key"));
+		
+		Map<String, Integer> accounts = new TreeMap<>();
+		
+		accounts.put("홍길동", 10000);
+		accounts.put("이순신", 90000);
+		accounts.put("이성계", 40000);
+		accounts.put("강감찬", 70000);
+		
+		System.out.println(accounts);
+		
+		System.out.println();
+		System.out.println("이성계 : " + accounts.get("이성계"));
+		
+		System.out.println();
+		Set<Map.Entry<String, Integer>> s = accounts.entrySet();
+		for(Map.Entry<String, Integer> member : s) {
+			System.out.println(member.getKey() + ":" + member.getValue());
+		}
+		
+		System.out.println();
+		Set<String> ss = accounts.keySet();
+		for(String key : ss) {
+			System.out.println(key + "::" + accounts.get(key));
+		}
+		
 		
 
 	}
