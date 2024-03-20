@@ -65,7 +65,7 @@ public class E03_arrayListEx {
 		
 		System.out.println();
 		
-		// toDtring
+		// toString
 		System.out.println(list.toString());
 		
 		System.out.println();

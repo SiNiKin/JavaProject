@@ -18,6 +18,8 @@ public class E02_treeSetEx {
 		ts1.add(4);
 		ts1.add(6);
 		
+//		System.out.println(ts1);
+		
 		for (Integer i : ts1) {
 			System.out.print(i + "\t");
 		}
