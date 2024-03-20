@@ -73,7 +73,7 @@ public class D15_stringEx {
 		// 9. toUpperCase, toLowerCase : 대/소 문자로 변환...
 		
 		// 10. trim : 문자열 바깥 쪽 공백 제거
-		String id_1 = "    abc    123";
+		String id_1 = "    abc    123";  
 		String id_2 = " abc    123    ";
 		
 		System.out.println("before1 : " + id_1);

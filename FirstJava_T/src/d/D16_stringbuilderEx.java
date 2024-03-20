@@ -37,6 +37,10 @@ public class D16_stringbuilderEx {
 		sb.replace(12, 14, "! 1");
 		System.out.println("replace(12, 14, \"! 1\")의 결과 : " + sb);
 		
+		// 7. reverse() : 문자열의 순서를 반대로...
+		sb.reverse();
+		System.out.println("reverse()의 결과 : " + sb);
+		
 		
 		
 	}

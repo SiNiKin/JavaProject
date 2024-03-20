@@ -25,6 +25,6 @@ public class D14_wrapper {
 		
 		int a = Integer.parseInt("100");	// 문자열 값을 기본 데이터 형으로 변경!!
 		System.out.println(a);
-	}
+	}  
 
 }
