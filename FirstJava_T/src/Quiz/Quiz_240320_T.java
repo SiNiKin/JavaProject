@@ -25,7 +25,7 @@ public class Quiz_240320_T {
 		ArrayList list1 = new ArrayList();
 		ArrayList list2 = new ArrayList();
 		
-		for (int i =0; i < arr1.length; i++) {
+		for (int i = 0; i < arr1.length; i++) {
 			list1.add(arr1[i]);
 			list2.add(arr2[i]);
 		}
@@ -49,13 +49,16 @@ public class Quiz_240320_T {
 //		HashSet result = new HashSet(union);
 		
 		// 교집합
-		ArrayList intersection = new ArrayList(list1);
+		ArrayList intersection = new ArrayList();
 		for(Object o : list2) {
-			if(union.contains(o))
+			if(list1.contains(o))
 				intersection.add(o);
 		}
 		
-		System.out.println("교집합 : " + union);
+		System.out.println("교집합 : " + intersection);
+		
+		//차집합
+		
 
 		
 //		   [[[2. 로또 번호 생성하기]]]

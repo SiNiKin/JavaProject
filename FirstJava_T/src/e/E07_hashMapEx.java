@@ -31,6 +31,8 @@ public class E07_hashMapEx {
 		
 		// getOrDefault() : 키를 넣으면 해당 값을 반환, 만약에 값이 없으면?
 		// 두번 매개변수인 default 값을 가져와요...
+		
+		System.out.println("녀기!");
 		System.out.println(map.getOrDefault("ABC", 1000));
 		System.out.println(map.getOrDefault("ABCD", 1000));
 		
