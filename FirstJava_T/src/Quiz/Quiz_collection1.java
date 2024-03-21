@@ -35,4 +35,6 @@ public class Quiz_collection1 {
 		return answer;
 	}
 
+	
+	
 }
