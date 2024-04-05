@@ -1,7 +1,5 @@
 package customermanager.oop;
 
-import obj.inheritance.Person;
-
 public class Customer {
 
 	// 멤버변수 (속성)

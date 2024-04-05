@@ -3,15 +3,25 @@
     pageEncoding="UTF-8"%>
     
 <%!
-	public static int method(){
-		int result = 0;
-		return result+= 1;	
+	// 선언자와 스크립트릿 차이 => 멤버변수는 전역변수의 성질을 가지면서 전체 어플에 영향을 준다.
+	int total = 0;
+
+	public int randomNum(){
+		Random ran = new Random();
+		int num = ran.nextInt(10);
+		
+		return num;	
 	}
 %>
     
 <%
-	Random ran = new Random();
-	int num = ran.nextInt(10) + 1;
+	//페이지가 실행될 때마다 발생하는 코드를 작성
+	int each = 0;
+
+	total ++;
+	each ++;
+	
+	int rn = randomNum();
 	
 %>
 <!DOCTYPE html>
@@ -23,9 +33,9 @@
 	
 	<body>
 		
-		페이지 누적요청 : <%=method() %> <br>
-		
-		오늘의 숫자 : <%=num %>
+		페이지 누적요청 : <%=total %> <br>
+		페이지 개별요청 : <%=each %> <br>
+		오늘의 숫자 : <%=rn %>
 		
 	</body>
 </html>
