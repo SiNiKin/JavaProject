@@ -8,9 +8,10 @@
 	String weight = request.getParameter("weight");
 	
 	
-	double kg = Integer.parseInt(weight);
-	double cm = Integer.parseInt(height);
+	double kg = Double.parseDouble(weight);
+	double cm = Double.parseDouble(height);
 	double bmi = kg / ((cm/100) * (cm/100));
+	String str = String.format("%.2f", bmi);
 %>
 <!DOCTYPE html>
 <html>
@@ -25,7 +26,7 @@
 		이름 : <%=name %> <br>
 		키 : <%=height %> <br>
 		몸무게 : <%=weight %> <br>
-		BMI 지수 : <%=bmi %> <br>
+		BMI 지수 : <%=str %> <br>
 		
 		<%
 			if(bmi >= 25){
