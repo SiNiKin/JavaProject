@@ -4,14 +4,14 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String name = request.getParameter("name");
-	String height = request.getParameter("height");
-	String weight = request.getParameter("weight");
-	
-	
-	double kg = Double.parseDouble(weight);
-	double cm = Double.parseDouble(height);
+
+	double cm = Double.parseDouble(request.getParameter("height"));
+	double kg = Double.parseDouble(request.getParameter("weight"));
 	double bmi = kg / ((cm/100) * (cm/100));
-	String str = String.format("%.2f", bmi);
+	
+	// 소수점 2자리까지만 구하기...
+	// String str = String.format("%.2f", bmi);
+	bmi = (int) (bmi * 100) / 100.0;
 %>
 <!DOCTYPE html>
 <html>
@@ -24,9 +24,9 @@
 	
 	<body>
 		이름 : <%=name %> <br>
-		키 : <%=height %> <br>
-		몸무게 : <%=weight %> <br>
-		BMI 지수 : <%=str %> <br>
+		키 : <%=cm %> <br>
+		몸무게 : <%=kg %> <br>
+		BMI 지수 : <%=bmi %> <br>
 		
 		<%
 			if(bmi >= 25){

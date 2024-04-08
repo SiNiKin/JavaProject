@@ -25,7 +25,7 @@
 	 	몸무게 : <input type="text" size="10" name = "weight"> <br>
 	 	
 	 	<br>
-		<input type="submit" value="가입"><br>
+		<input type="submit" value="제출"><br>
 	 
 	 </form>
 	</body>
