@@ -26,7 +26,7 @@ public class UpdateOk extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// form에서 들어오는 값 처리...
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");
+		String id = request.getParameter("id"); 
 		String name = request.getParameter("name");
 		String phone1 = request.getParameter("phone1");
 		String phone2 = request.getParameter("phone2");
