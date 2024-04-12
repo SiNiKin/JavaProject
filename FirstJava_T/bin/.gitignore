@@ -1,15 +1,3 @@
-/Customer.class
-/HttpThread.class
-/I01_ipNetAddress.class
-/I02_url_Ex.class
-/I03_serverEx.class
-/I04_udpServerEx.class
-/I05_udpClientEx.class
-/I06_JDBC.class
-/I07_JDBC2.class
-/I08_personsMain.class
-/I09_sqliteDB.class
-/I10_mariadb.class
 /I11_oracleDB.class
 /PDF_quiz/
 /PersonsDAO.class
@@ -31,4 +19,3 @@
 /mariadb/
 /obj/
 /util/
-/Event.class
