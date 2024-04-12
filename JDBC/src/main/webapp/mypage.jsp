@@ -15,7 +15,7 @@
 	</head>
 	
 	<body>
-		<%=id %>님 환영합니다. <br>
+		<h2><%=id %>님 환영합니다.</h2><br>
 		
 		<a href="logout.jsp">로그아웃</a>
 		<a href="modify_ok">정보수정</a>
