@@ -10,6 +10,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.myweb.util.JdbcUtil;
+
 
 public class UserDAO {
 	
@@ -41,11 +43,43 @@ public class UserDAO {
 	ResultSet rs = null;
 	
 	//------------ 기능을 메서드로 선언 -----------------------
-	// 회원가입
+	// 중복 확인 메서드
+	public int IdConfirm(String id) {
+		int result = 0;
+		
+		String sql = "select * from users where id = ?";
+		
+		try {
+			// Connection Pool
+			conn = ds.getConnection();
+			
+			// PreparedStatement
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			//SQL 실행
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = 1;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		
+		return result;
+	}
+	
+	// 회원가입 메서드 
 	public int join(UserVO vo) {
 		int result = 0;
 	
-		String sql = "insert into user values(?,?,?,?,?,?)";
+		String sql = "insert into users(id, pw, name, email, address) "
+				+ "values(?,?,?,?,?)";
 		
 		try {
 			// Connection 객체 생성
@@ -57,16 +91,12 @@ public class UserDAO {
 			pstmt.setString(3, vo.getName());
 			pstmt.setString(4, vo.getEmail());
 			pstmt.setString(5, vo.getAddress());
-			pstmt.setTimestamp(6, vo.getRegdate());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(conn != null) conn.close();
-				if(pstmt != null) pstmt.close();
-			} catch (Exception e2) {}
+			JdbcUtil.close(conn, pstmt, rs);
 		}
 		
 		return result;
@@ -75,7 +105,7 @@ public class UserDAO {
 	// 로그인
 	public int login(String id, String pw) {
 		int result = 0;
-		String sql = "select * from user where id = ? and pw = ?";
+		String sql = "select * from users where id = ? and pw = ?";
 		
 		try {
 			// Connection 객체 생성
@@ -92,51 +122,42 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(conn != null) conn.close();
-				if(pstmt != null) pstmt.close();
-				if(rs != null) rs.close();
-			} catch (Exception e2) {}
+			JdbcUtil.close(conn, pstmt, rs);
 		}
 		
 		return result;
 	}
 	
-	// 회원 정보 조회
-	public UserVO getInfo(String id) {
+	// 회원 정보를 얻어오는 메서드 
+	public UserVO getUserInfo(String id1) {
 		UserVO vo = null;
 		
-		String sql = "select * from user where id = ?";
+		String sql = "select * from users where id = ?";
 		
 		try {
 			// conn 객체 생성
-//				conn = DriverManager.getConnection(url, user, password);
 			conn = ds.getConnection();
 			// pstmt 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, id1);
 			
 			//sql 실행
 			rs = pstmt.executeQuery();
 			
-			while (rs.next()) {
+			if (rs.next()) {
+				String id = rs.getString("id");
 				String name = rs.getString("name");
 				String email = rs.getString("email");
 				String address = rs.getString("address");
 				Timestamp regdate = rs.getTimestamp("regdate");
 				
 				vo = new UserVO(id, null, name, email, address, regdate);
-				
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				if(conn != null) conn.close();
-				if(pstmt != null) pstmt.close();
-				if(rs != null) rs.close();
-			} catch (Exception e2) {}
+			JdbcUtil.close(conn, pstmt, rs);
 		}
 		
 		return vo;
@@ -146,7 +167,7 @@ public class UserDAO {
 	public int update(UserVO vo) {
 		int result = 0;
 		
-		String sql = "update user set name = ?, email=?, address=? where id=?";
+		String sql = "update users set name = ?, email=?, address=? where id=?";
 		
 		try {
 			// Connection 객체 생성
@@ -162,10 +183,31 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(conn != null) conn.close();
-				if(pstmt != null) pstmt.close();
-			} catch (Exception e2) {}
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return result;
+	}
+	
+	// 패스워드 변경 메서드
+	public int changePassword(String id, String newPw) {
+		int result = 0;
+		
+		String sql = "update users set pw = ? where id=?";
+		
+		try {
+			// Connection 객체 생성
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, newPw);
+			pstmt.setString(2, id);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn, pstmt, rs);
 		}
 		
 		return result;
@@ -175,7 +217,7 @@ public class UserDAO {
 	public int delete(String id) {
 		int result = 0;
 		
-		String sql = "delete from user where id = ?";
+		String sql = "delete from users where id = ?";
 		
 		try {
 			// Connection 객체 생성
@@ -188,10 +230,7 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(conn != null) conn.close();
-				if(pstmt != null) pstmt.close();
-			} catch (Exception e2) {}
+				JdbcUtil.close(conn, pstmt, rs);
 		}
 		
 		return result;

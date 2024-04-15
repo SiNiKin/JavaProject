@@ -1,7 +1,4 @@
-/Customer.class
-/Event.class
 /HttpThread.class
-/I01_ipNetAddress.class
 /I02_url_Ex.class
 /I03_serverEx.class
 /I04_udpServerEx.class
@@ -27,8 +24,8 @@
 /generic/
 /h/
 /interface_/
+/kk.class
+/maintest.class
 /mariadb/
 /obj/
 /util/
-/kk.class
-/maintest.class
