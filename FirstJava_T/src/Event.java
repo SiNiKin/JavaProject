@@ -7,8 +7,9 @@ import JDBC.PlayVO;
 
 public class Event {
 	Scanner scan = null;
-	DBConnect dao ;
-	PlayVO vo ;
+	DBConnect dao;
+	PlayVO vo;
+	
 	public Event(Scanner sc) {
 		this.scan = sc;
 		this.dao= new DBConnect();
@@ -18,24 +19,18 @@ public class Event {
 		String playerName = scan.next();
 		scan.nextLine();
 
-		// 사용자 이름으로 데이터 조회 메서드
-		List<PlayVO> playerList = dao.allPlay();
+		List<PlayVO> playerList = dao.playerList();
 		boolean playerData = checkPlayer(playerList, playerName);
-		
-		// 랜덤 수 생성 메서드
 		List<Integer> comList = randomList();
-		System.out.println(comList);
 
-		// 사용자한테 입력값 받기
 		int save = playGame(comList);
 
-		// 게임 결과 출력
 		gameResult(dao, playerData, playerName, save);
-
+		
 	}
 
 	// 사용자 이름으로 데이터 조회
-	public static boolean checkPlayer(List<PlayVO> playerList, String playerName) {
+	public boolean checkPlayer(List<PlayVO> playerList, String playerName) {
 		for (PlayVO player : playerList) {
 			if (player.getName().equals(playerName)) {
 				System.out.println("기존 플레이어입니다.");
@@ -46,7 +41,7 @@ public class Event {
 	}
 
 	// 랜덤한 3자리 수 생성
-	public static List<Integer> randomList() {
+	public List<Integer> randomList() {
 		List<Integer> comList = new ArrayList<>();
 		while (comList.size() < 3) {
 			int num = (int) (Math.random() * 9) + 1;
@@ -111,11 +106,11 @@ public class Event {
 	}
 
 	// 기존 플레이어일 경우 점수 업데이트
-	public static void gameResult(DBConnect dao, boolean playerData, String playerName, int save) {
+	public void gameResult(DBConnect dao, boolean playerData, String playerName, int save) {
 		if (playerData) {
-			dao.updatePlay(new PlayVO(playerName, save));
+			dao.updatePlay(save, playerName);
 		} else {
-			dao.insert(new PlayVO(playerName, save));
+			dao.insert(playerName, save);
 		}
 	}
 }
